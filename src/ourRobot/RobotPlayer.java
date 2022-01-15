@@ -12,6 +12,7 @@ public strictfp class RobotPlayer {
 
     static int turnCount = 0;
     static int initialArchons;
+    static int miners = 0, soldiers = 0, builders = 0, sages = 0;
 
     static final Random rng = new Random(6147);
 

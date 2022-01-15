@@ -11,6 +11,7 @@ import java.util.Random;
 public strictfp class RobotPlayer {
 
     static int turnCount = 0;
+    static int initialArchons;
 
     static final Random rng = new Random(6147);
 
@@ -38,7 +39,8 @@ public strictfp class RobotPlayer {
 
         System.out.println("I'm a " + rc.getType() + " and I just got created! I have health " + rc.getHealth());
 
-        rc.setIndicatorString("Hello world!");
+        rc.setIndicatorString("Awesomest robot ever");
+        initialArchons = rc.getArchonCount();
 
         while (true) {
 

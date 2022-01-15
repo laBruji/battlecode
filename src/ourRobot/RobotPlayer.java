@@ -8,6 +8,8 @@ import java.util.Random;
  * The run() method inside this class is like your main function: this is what we'll call once your robot
  * is created!
  */
+
+// TODO: Fix all the exception handling
 public strictfp class RobotPlayer {
 
     static int turnCount = 0;

@@ -15,8 +15,7 @@ public class Walk {
         Direction initDir = initLocation.directionTo(target);
         Direction currentDir = initDir;
         Direction dirToTarget;
-        int initDistance = initLocation.distanceSquaredTo(target);
-        int minDistance = initDistance;
+        int minDistance = initLocation.distanceSquaredTo(target);
         int currentDistance;
 
 

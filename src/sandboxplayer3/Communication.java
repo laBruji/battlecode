@@ -139,7 +139,7 @@ class Communication {
             if (m == null && slot == -1) {
                 slot = i;
             } else if (m != null && enemy.distanceSquaredTo(m) <= 10) {
-                return;
+                continue;
             }
         }
         if (slot != -1) {

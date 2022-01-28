@@ -8,7 +8,7 @@ strictfp class BuilderStrategy {
 
     static int turn = 0;
 
-    static void runBuilder(RobotController rc) throws GameActionException{
+    static boolean runBuilder(RobotController rc) throws GameActionException{
         
         turn ++;
         //repair neighboring buildings
@@ -20,6 +20,10 @@ strictfp class BuilderStrategy {
                     rc.repair(repLocation);
                 }
             }
+        }
+
+        if(rc.senseLead(me) == 0 && RobotPlayer.rng.nextInt(1000) < 100) {
+            return true;
         }
 
         RobotInfo[] robots = rc.senseNearbyRobots();
@@ -50,5 +54,7 @@ strictfp class BuilderStrategy {
         } else if(rc.getTeamLeadAmount(rc.getTeam()) > 7000 && turn % 100 == 0 && rc.canBuildRobot(RobotType.WATCHTOWER, dir)){
             rc.buildRobot(RobotType.WATCHTOWER, dir);
         }
+
+        return false;
     }
 }

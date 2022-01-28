@@ -101,7 +101,7 @@ public strictfp class RobotPlayer {
                     case SOLDIER:    runSoldier(rc); break;
                     case LABORATORY: LaboratoryStrategy.runLaboratory(rc); break;
                     case WATCHTOWER: WatchTowerStrategy.runWatchTower(rc); break;
-                    case BUILDER:    BuilderStrategy.runBuilder(rc); break;
+                    case BUILDER:    if(BuilderStrategy.runBuilder(rc)) return; break;
                     case SAGE:       break;
                 }
             } catch (GameActionException e) {
@@ -178,7 +178,7 @@ public strictfp class RobotPlayer {
             }
         }
 
-        // If not attacking, try to move to the closest an archon, else move randomly
+        // If not attacking, try to move to the closest archon, else move randomly
         if (!attacking) {
             Direction dir = me.directionTo(Communication.getClosestArchon(rc));
             if (rc.canMove(dir)) {
@@ -188,6 +188,10 @@ public strictfp class RobotPlayer {
             // attack heuristic
             if (dir == null) {
                 MapLocation h = Communication.getAttackHeuristic(rc);
+                if (h == null)
+                    h = Communication.getClosestArchon(rc);
+                if (h == null)
+                    h = Communication.getClosestEnemy(rc);
 
                 if (h != null) {
                     dir = me.directionTo(h);
